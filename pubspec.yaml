@@ -1,0 +1,72 @@
+name: getx_mvvm_architecture
+description: "A new Flutter project."
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  get: ^4.6.6
+  shared_preferences: ^2.5.1
+  firebase_core: ^4.1.1
+  firebase_analytics: ^12.0.2
+  firebase_crashlytics: ^5.0.2
+  package_info_plus: ^8.3.0
+  flutter_svg: ^2.0.17
+  flutter_flavorizr: ^2.4.1
+  http: ^1.5.0
+  gap: ^3.0.1
+  logger: ^2.6.2
+  google_maps_flutter: ^2.10.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/locales/
+    - assets/svg/
+    - assets/images/
+
+flavorizr:
+  ide: "vscode"
+  flavors:
+    dev:
+      app:
+        name: "AMK Dev"
+        # icon: "assets/images/amk_logo.png"
+      android:
+        applicationId: "com.solid.principle.dev"
+      ios:
+        bundleId: "com.solid.principle.dev"
+
+    staging:
+      app:
+        name: "AMK Staging"
+        # icon: "assets/images/amk_logo.png"
+      android:
+        applicationId: "com.solid.principle.staging"
+      ios:
+        bundleId: "com.solid.principle.staging"
+
+    prod:
+      app:
+        name: "AMK Prod"
+        # icon: "assets/images/amk_logo.png"
+      android:
+        applicationId: "com.solid.principle"
+
+      ios:
+        bundleId: "com.solid.principle"
