@@ -46,7 +46,7 @@ flavorizr:
     dev:
       app:
         name: "AMK Dev"
-        # icon: "assets/images/amk_logo.png"
+        icon: "assets/images/amk_logo.png"
       android:
         applicationId: "com.solid.principle.dev"
       ios:
@@ -55,7 +55,7 @@ flavorizr:
     staging:
       app:
         name: "AMK Staging"
-        # icon: "assets/images/amk_logo.png"
+        icon: "assets/images/amk_logo.png"
       android:
         applicationId: "com.solid.principle.staging"
       ios:
@@ -64,7 +64,7 @@ flavorizr:
     prod:
       app:
         name: "AMK Prod"
-        # icon: "assets/images/amk_logo.png"
+        icon: "assets/images/amk_logo.png"
       android:
         applicationId: "com.solid.principle"
 

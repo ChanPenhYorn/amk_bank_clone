@@ -30,15 +30,4 @@ class F {
         return 'https://example.com';
     }
   }
-
-  static String get appIcon {
-    switch (appFlavor) {
-      case Flavor.dev:
-        return 'assets/images/app_logo_dev.png';
-      case Flavor.staging:
-        return 'assets/images/app_logo_staging.png';
-      case Flavor.prod:
-        return 'assets/images/app_logo.png';
-    }
-  }
 }
