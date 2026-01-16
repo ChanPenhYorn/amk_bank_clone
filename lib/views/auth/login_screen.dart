@@ -7,7 +7,7 @@ import 'package:getx_mvvm_architecture/controllers/localization_controller.dart'
 import 'package:getx_mvvm_architecture/r.dart';
 import 'package:getx_mvvm_architecture/routes/app_route.dart';
 import 'package:getx_mvvm_architecture/views/auth/register_screen.dart';
-import 'package:getx_mvvm_architecture/core/shared/app_font.dart';
+import 'package:getx_mvvm_architecture/core/shared/extensions.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -94,21 +94,21 @@ class LoginScreen extends StatelessWidget {
                                 onTap: () =>
                                     localizationController.changeLanguage('en'),
                                 child: _buildLanguageOption(
-                                    AssetImages.enFlag, "EN",
+                                    context, AssetImages.enFlag, "EN",
                                     isActive: currentLang == 'en'),
                               ),
                               GestureDetector(
                                 onTap: () =>
                                     localizationController.changeLanguage('cn'),
                                 child: _buildLanguageOption(
-                                    AssetImages.cnFlag, "中文",
+                                    context, AssetImages.cnFlag, "中文",
                                     isActive: currentLang == 'zh'),
                               ),
                               GestureDetector(
                                 onTap: () =>
                                     localizationController.changeLanguage('km'),
                                 child: _buildLanguageOption(
-                                    AssetImages.kmFlag, "ខ្មែរ",
+                                    context, AssetImages.kmFlag, "ខ្មែរ",
                                     isActive: currentLang == 'km'),
                               ),
                             ],
@@ -156,8 +156,14 @@ class LoginScreen extends StatelessWidget {
                           },
                           child: Text(
                             AppString.signIn.tr,
-                            style: AppFont.bold(
-                                fontSizeValue: 18, color: Colors.white),
+                            style: ThemeContext(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
                           ),
                         ),
                       ),
@@ -180,8 +186,14 @@ class LoginScreen extends StatelessWidget {
                           onPressed: () {},
                           child: Text(
                             AppString.signUp.tr,
-                            style: AppFont.bold(
-                                color: AppColors.amkPrimary, fontSizeValue: 18),
+                            style: ThemeContext(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
+                                  fontSize: 18,
+                                  color: AppColors.amkPrimary,
+                                  fontWeight: FontWeight.bold,
+                                ),
                           ),
                         ),
                       ),
@@ -196,9 +208,12 @@ class LoginScreen extends StatelessWidget {
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 12.0),
                             child: Text(AppString.noAccountMsg.tr,
-                                style: AppFont.regular(
-                                    fontSizeValue: 13,
-                                    color: Colors.grey.shade600)),
+                                style: ThemeContext(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(
+                                        fontSize: 13,
+                                        color: Colors.grey.shade600)),
                           ),
                           Expanded(child: Divider(color: Colors.grey.shade300)),
                         ],
@@ -220,9 +235,13 @@ class LoginScreen extends StatelessWidget {
                           ),
                           child: Center(
                             child: Text(AppString.selfAccountOpening.tr,
-                                style: AppFont.bold(
-                                    color: AppColors.amkPrimary,
-                                    fontSizeValue: 16)),
+                                style: ThemeContext(context)
+                                    .textTheme
+                                    .titleMedium
+                                    ?.copyWith(
+                                        color: AppColors.amkPrimary,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold)),
                           ),
                         ),
                       ),
@@ -241,16 +260,19 @@ class LoginScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       _buildFooterItem(
+                        context,
                         Icons.chat_bubble_outline,
                         AppString.chat.tr,
                         Colors.black,
                       ),
                       _buildFooterItem(
+                        context,
                         Icons.call_outlined,
                         AppString.contactUs.tr,
                         Colors.black,
                       ),
                       _buildFooterItem(
+                        context,
                         Icons.info_outline,
                         AppString.aboutAmk.tr,
                         Colors.black,
@@ -266,7 +288,8 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildLanguageOption(String flagPath, String label,
+  Widget _buildLanguageOption(
+      BuildContext context, String flagPath, String label,
       {bool isActive = false}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -298,15 +321,18 @@ class LoginScreen extends StatelessWidget {
 
             SizedBox(width: 4),
             Text(label,
-                style:
-                    AppFont.medium(color: Colors.black87, fontSizeValue: 12)),
+                style: ThemeContext(context)
+                    .textTheme
+                    .labelMedium
+                    ?.copyWith(color: Colors.black87, fontSize: 12)),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildFooterItem(IconData icon, String label, Color color,
+  Widget _buildFooterItem(
+      BuildContext context, IconData icon, String label, Color color,
       {VoidCallback? onTap}) {
     return GestureDetector(
       onTap: onTap,
@@ -330,8 +356,10 @@ class LoginScreen extends StatelessWidget {
             Icon(icon, color: AppColors.amkPrimary, size: 28),
             SizedBox(height: 8),
             Text(label,
-                style:
-                    AppFont.medium(color: Colors.black87, fontSizeValue: 13)),
+                style: ThemeContext(context)
+                    .textTheme
+                    .labelMedium
+                    ?.copyWith(color: Colors.black87, fontSize: 13)),
           ],
         ),
       ),

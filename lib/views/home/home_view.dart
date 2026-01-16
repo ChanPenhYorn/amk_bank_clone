@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_mvvm_architecture/core/shared/app_string.dart';
 import 'package:getx_mvvm_architecture/core/utils/app_colors.dart';
-import 'package:getx_mvvm_architecture/core/utils/extensions.dart';
-import 'package:getx_mvvm_architecture/core/shared/app_font.dart';
+import 'package:getx_mvvm_architecture/core/shared/extensions.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -55,10 +54,11 @@ class HomeView extends StatelessWidget {
           const SizedBox(width: 12),
           Text(
             "${AppString.goodMorning.tr}, Mary Doe!",
-            style: AppFont.semiBold(
-              fontSizeValue: 15,
-              color: context.colors.onSurface,
-            ),
+            style: ThemeContext(context).textTheme.titleSmall?.copyWith(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                  color: ThemeContext(context).colors.onSurface,
+                ),
           ),
         ],
       ),
@@ -130,10 +130,9 @@ class HomeView extends StatelessWidget {
         Text(
           label.tr,
           textAlign: TextAlign.center,
-          style: AppFont.medium(
-            fontSizeValue: 12,
-            color: context.colors.onSurface.withOpacity(0.8),
-          ),
+          style: ThemeContext(context).textTheme.labelMedium?.copyWith(
+                color: ThemeContext(context).colors.onSurface.withOpacity(0.8),
+              ),
           overflow: TextOverflow.ellipsis,
         ),
       ],
@@ -150,7 +149,8 @@ class HomeView extends StatelessWidget {
               onPressed: () {},
               icon: const Icon(Icons.compare_arrows, size: 20),
               label: Text(AppString.fastTransfer.tr,
-                  style: AppFont.semiBold(color: Colors.white)),
+                  style: ThemeContext(context).textTheme.bodyMedium?.copyWith(
+                      color: Colors.white, fontWeight: FontWeight.w600)),
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.amkGradientStart,
                 foregroundColor: Colors.white,
@@ -167,7 +167,8 @@ class HomeView extends StatelessWidget {
               onPressed: () {},
               icon: const Icon(Icons.qr_code_2, size: 20),
               label: Text(AppString.fastPayment.tr,
-                  style: AppFont.semiBold(color: Colors.white)),
+                  style: ThemeContext(context).textTheme.bodyMedium?.copyWith(
+                      color: Colors.white, fontWeight: FontWeight.w600)),
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF3498DB),
                 foregroundColor: Colors.white,
@@ -217,18 +218,22 @@ class HomeView extends StatelessWidget {
             children: [
               Text(
                 AppString.exploreFeatures.tr,
-                style: AppFont.bold(
-                  fontSizeValue: 16,
-                  color: context.colors.onSurface,
-                ),
+                style: ThemeContext(context).textTheme.titleMedium?.copyWith(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: ThemeContext(context).colors.onSurface,
+                    ),
               ),
               GestureDetector(
                 onTap: () {},
                 child: Row(
                   children: [
                     Text(AppString.seeAll.tr,
-                        style: AppFont.medium(
-                            color: context.colors.primary, fontSizeValue: 14)),
+                        style: ThemeContext(context)
+                            .textTheme
+                            .labelLarge
+                            ?.copyWith(
+                                color: ThemeContext(context).colors.primary)),
                     Icon(Icons.chevron_right,
                         color: context.colors.primary, size: 18),
                   ],
@@ -239,7 +244,7 @@ class HomeView extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         SizedBox(
-          height: 127,
+          height: 140,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -285,10 +290,16 @@ class HomeView extends StatelessWidget {
                         textAlign: TextAlign.center,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
-                        style: AppFont.medium(
-                          fontSizeValue: 10,
-                          color: context.colors.onSurface.withOpacity(0.7),
-                        ),
+                        style: ThemeContext(context)
+                            .textTheme
+                            .labelSmall
+                            ?.copyWith(
+                              fontSize: 10,
+                              color: ThemeContext(context)
+                                  .colors
+                                  .onSurface
+                                  .withOpacity(0.7),
+                            ),
                       ),
                     ),
                   ],
@@ -309,10 +320,11 @@ class HomeView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Text(
             AppString.promotions.tr,
-            style: AppFont.bold(
-              fontSizeValue: 16,
-              color: context.colors.onSurface,
-            ),
+            style: ThemeContext(context).textTheme.titleMedium?.copyWith(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: ThemeContext(context).colors.onSurface,
+                ),
           ),
         ),
         const SizedBox(height: 12),
@@ -340,18 +352,22 @@ class HomeView extends StatelessWidget {
                   children: [
                     Text(
                       "AMK UNIONPAY",
-                      style: AppFont.bold(
-                        color: Colors.white,
-                        fontSizeValue: 12,
-                      ),
+                      style:
+                          ThemeContext(context).textTheme.labelMedium?.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
                     ),
                     Text(
                       "1% CASHBACK",
-                      style: AppFont.bold(
-                        color: Colors.white,
-                        fontSizeValue: 20,
-                        fontWeight: FontWeight.w900,
-                      ),
+                      style: ThemeContext(context)
+                          .textTheme
+                          .headlineSmall
+                          ?.copyWith(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w900,
+                          ),
                     ),
                   ],
                 ),

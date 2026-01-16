@@ -5,14 +5,13 @@ import 'package:getx_mvvm_architecture/controllers/theme_controller.dart';
 import 'package:getx_mvvm_architecture/controllers/localization_controller.dart';
 import 'package:getx_mvvm_architecture/controllers/dashboard_controller.dart';
 import 'package:getx_mvvm_architecture/core/shared/app_string.dart';
-import 'package:getx_mvvm_architecture/core/utils/extensions.dart';
+import 'package:getx_mvvm_architecture/core/shared/extensions.dart';
 import 'package:getx_mvvm_architecture/r.dart';
 import 'package:getx_mvvm_architecture/views/home/home_view.dart';
 import 'package:getx_mvvm_architecture/views/home/cards_view.dart';
 import 'package:getx_mvvm_architecture/views/home/scan_view.dart';
 import 'package:getx_mvvm_architecture/views/home/chat_view.dart';
 import 'package:getx_mvvm_architecture/views/home/others_view.dart';
-import 'package:getx_mvvm_architecture/core/shared/app_font.dart';
 
 class DashboardScreen extends GetView<DashboardController> {
   DashboardScreen({super.key});
@@ -191,8 +190,12 @@ class DashboardScreen extends GetView<DashboardController> {
             Text(
               label,
               style: isActive
-                  ? AppFont.bold(fontSizeValue: 11, color: color)
-                  : AppFont.medium(fontSizeValue: 11, color: color),
+                  ? ThemeContext(context).textTheme.labelSmall?.copyWith(
+                      fontSize: 11, color: color, fontWeight: FontWeight.bold)
+                  : ThemeContext(context).textTheme.labelSmall?.copyWith(
+                      fontSize: 11,
+                      color: color,
+                      fontWeight: FontWeight.normal),
             ),
           ],
         ),

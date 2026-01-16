@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_mvvm_architecture/controllers/theme_controller.dart';
-import 'package:getx_mvvm_architecture/core/utils/extensions.dart';
+import 'package:getx_mvvm_architecture/core/shared/extensions.dart';
 import 'package:gap/gap.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -22,8 +22,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             Text(
               'Current Theme:',
-              style: context.textTheme
-                  .bodyMedium, // Use the custom text style from the theme
+              style: ThemeContext(context).textTheme.bodyMedium,
             ),
             Obx(() {
               // Display the current theme name based on the index.

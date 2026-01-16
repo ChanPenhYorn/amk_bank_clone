@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_mvvm_architecture/core/utils/app_colors.dart';
+import 'package:getx_mvvm_architecture/core/shared/extensions.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -40,11 +41,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
         title: Text(
           'ចូលប្រើប្រាស់',
-          style: TextStyle(
-            color: isDarkMode ? Colors.white : Colors.black87,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
+          style: ThemeContext(context).textTheme.titleLarge?.copyWith(
+                color: isDarkMode ? Colors.white : Colors.black87,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
         ),
         centerTitle: true,
       ),
@@ -80,11 +81,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                         Text(
                           'បញ្ចូលលេខទូរស័ព្ទ',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.amkPrimary,
-                          ),
+                          style: ThemeContext(context)
+                              .textTheme
+                              .titleLarge
+                              ?.copyWith(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.amkPrimary,
+                              ),
                         ),
                       ],
                     ),
@@ -125,36 +129,45 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       value: '+855',
                                       child: Text(
                                         '+855',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: isDarkMode
-                                              ? Colors.white
-                                              : Colors.black87,
-                                        ),
+                                        style: ThemeContext(context)
+                                            .textTheme
+                                            .bodyLarge
+                                            ?.copyWith(
+                                              fontSize: 16,
+                                              color: isDarkMode
+                                                  ? Colors.white
+                                                  : Colors.black87,
+                                            ),
                                       ),
                                     ),
                                     DropdownMenuItem(
                                       value: '+1',
                                       child: Text(
                                         '+1',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: isDarkMode
-                                              ? Colors.white
-                                              : Colors.black87,
-                                        ),
+                                        style: ThemeContext(context)
+                                            .textTheme
+                                            .bodyLarge
+                                            ?.copyWith(
+                                              fontSize: 16,
+                                              color: isDarkMode
+                                                  ? Colors.white
+                                                  : Colors.black87,
+                                            ),
                                       ),
                                     ),
                                     DropdownMenuItem(
                                       value: '+66',
                                       child: Text(
                                         '+66',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: isDarkMode
-                                              ? Colors.white
-                                              : Colors.black87,
-                                        ),
+                                        style: ThemeContext(context)
+                                            .textTheme
+                                            .bodyLarge
+                                            ?.copyWith(
+                                              fontSize: 16,
+                                              color: isDarkMode
+                                                  ? Colors.white
+                                                  : Colors.black87,
+                                            ),
                                       ),
                                     ),
                                   ],
@@ -186,18 +199,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 child: TextField(
                                   controller: _phoneController,
                                   keyboardType: TextInputType.phone,
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: isDarkMode
-                                        ? Colors.white
-                                        : Colors.black87,
-                                  ),
+                                  style: ThemeContext(context)
+                                      .textTheme
+                                      .bodyLarge
+                                      ?.copyWith(
+                                        fontSize: 16,
+                                        color: isDarkMode
+                                            ? Colors.white
+                                            : Colors.black87,
+                                      ),
                                   decoration: InputDecoration(
                                     hintText: 'លេខទូរស័ព្ទ',
-                                    hintStyle: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 16,
-                                    ),
+                                    hintStyle: ThemeContext(context)
+                                        .textTheme
+                                        .bodyLarge
+                                        ?.copyWith(
+                                          color: Colors.grey,
+                                          fontSize: 16,
+                                        ),
                                     border: InputBorder.none,
                                     contentPadding: EdgeInsets.symmetric(
                                       horizontal: 16,
@@ -215,11 +234,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         // Info Text
                         Text(
                           'លេខទូរស័ព្ទរបស់អ្នកត្រូវតែត្រឹមត្រូវ ដោយសារ AMK នឹង ផ្ញើ កូដកាកបាទ ចាត់ចែងលេខទូរស័ព្ទរបស់អ្នកមកអោយ។ ប្រសិនបើអ្នកមិនទទួលបានកូដនោះ សូមទំនាក់ទំនងមកកាន់ក្រុមហ៊ុន AMK ដើម្បីទទួលបានការជួយ។',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.grey.shade600,
-                            height: 1.5,
-                          ),
+                          style: ThemeContext(context)
+                              .textTheme
+                              .bodySmall
+                              ?.copyWith(
+                                fontSize: 12,
+                                color: Colors.grey.shade600,
+                                height: 1.5,
+                              ),
                           textAlign: TextAlign.left,
                         ),
 
@@ -242,20 +264,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             obscureText: true,
                             keyboardType: TextInputType.number,
                             maxLength: 6,
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: isDarkMode ? Colors.white : Colors.black87,
-                            ),
+                            style: ThemeContext(context)
+                                .textTheme
+                                .bodyLarge
+                                ?.copyWith(
+                                  fontSize: 16,
+                                  color: isDarkMode
+                                      ? Colors.white
+                                      : Colors.black87,
+                                ),
                             decoration: InputDecoration(
                               prefixIcon: Icon(
                                 Icons.lock_outline,
                                 color: Colors.grey,
                               ),
                               hintText: 'លេខសម្ងាត់ ៦ ខ្ទង់',
-                              hintStyle: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 16,
-                              ),
+                              hintStyle: ThemeContext(context)
+                                  .textTheme
+                                  .bodyLarge
+                                  ?.copyWith(
+                                    color: Colors.grey,
+                                    fontSize: 16,
+                                  ),
                               border: InputBorder.none,
                               contentPadding: EdgeInsets.symmetric(
                                 horizontal: 16,
@@ -277,10 +307,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             },
                             child: Text(
                               'ភ្លេចលេខសម្ងាត់',
-                              style: TextStyle(
-                                color: AppColors.amkPrimary,
-                                fontSize: 14,
-                              ),
+                              style: ThemeContext(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                    color: AppColors.amkPrimary,
+                                    fontSize: 14,
+                                  ),
                             ),
                           ),
                         ),
@@ -328,11 +361,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   },
                   child: Text(
                     'បន្ទាប់',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style:
+                        ThemeContext(context).textTheme.titleMedium?.copyWith(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                   ),
                 ),
               ),

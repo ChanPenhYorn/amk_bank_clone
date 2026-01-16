@@ -25,7 +25,6 @@ class App extends StatelessWidget {
             'en',
             'US',
           ),
-
           supportedLocales: const [
             Locale('en', 'US'),
             Locale('km', 'KH'),
@@ -37,14 +36,22 @@ class App extends StatelessWidget {
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
-
           translations: translations,
-          title: 'Flutter Demo',
+          title: 'AMK Banking',
           debugShowCheckedModeBanner: false,
           theme: themeController.currentTheme,
           initialRoute: AppRoutes.splash,
           getPages: AppPages.routes,
           navigatorObservers: [routeObserver],
+          builder: (context, child) {
+            return Obx(() => MediaQuery(
+                  data: MediaQuery.of(context).copyWith(
+                    textScaler:
+                        TextScaler.linear(themeController.fontScale.value),
+                  ),
+                  child: child!,
+                ));
+          },
           // home: HomeScreen(),
         ));
   }

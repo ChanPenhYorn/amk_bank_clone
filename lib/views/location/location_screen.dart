@@ -1,7 +1,7 @@
 // lib/views/location/location_screen.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_mvvm_architecture/core/shared/app_font.dart';
+import 'package:getx_mvvm_architecture/core/shared/extensions.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:getx_mvvm_architecture/core/utils/app_colors.dart';
 import 'package:getx_mvvm_architecture/controllers/location_controller.dart';
@@ -26,11 +26,11 @@ class LocationScreen extends StatelessWidget {
           ),
           title: Text(
             'Locate AMK',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-            ),
+            style: ThemeContext(context).textTheme.titleLarge?.copyWith(
+                  color: Colors.black,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
           ),
           actions: [
             IconButton(
@@ -62,9 +62,11 @@ class LocationScreen extends StatelessWidget {
                   dividerColor: Colors.transparent,
                   indicatorPadding: EdgeInsets.zero,
                   indicatorSize: TabBarIndicatorSize.tab,
-                  labelStyle: AppFont.regular(fontSize: FontSize.medium),
+                  labelStyle: ThemeContext(context).textTheme.titleSmall,
                   unselectedLabelStyle:
-                      AppFont.regular(fontSize: FontSize.medium),
+                      ThemeContext(context).textTheme.titleSmall?.copyWith(
+                            color: AppColors.amkPrimary,
+                          ),
                   tabs: [
                     Tab(
                       height: 40,
@@ -123,10 +125,10 @@ class LocationScreen extends StatelessWidget {
                 icon: Icon(Icons.near_me, color: AppColors.amkPrimary),
                 label: Text(
                   'Near Me',
-                  style: TextStyle(
-                    color: AppColors.amkPrimary,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: ThemeContext(context).textTheme.titleSmall?.copyWith(
+                        color: AppColors.amkPrimary,
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
               ),
             ),

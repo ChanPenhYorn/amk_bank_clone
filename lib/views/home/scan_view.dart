@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:getx_mvvm_architecture/core/utils/extensions.dart';
+import 'package:getx_mvvm_architecture/core/shared/extensions.dart';
 import 'package:getx_mvvm_architecture/core/shared/app_font.dart';
 
 class ScanView extends StatelessWidget {
@@ -16,10 +16,14 @@ class ScanView extends StatelessWidget {
           SizedBox(height: 16),
           Text(
             "Scan QR",
-            style: AppFont.bold(
-              fontSizeValue: 18,
-              color: context.colors.onSurface,
-            ),
+            style: ThemeContext(context).textTheme.headlineMedium?.copyWith(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+            // style: AppFont.bold(
+            //   fontSizeValue: 18,
+            //   color: context.colors.onSurface,
+            // ),
           ),
         ],
       ),

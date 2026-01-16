@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:getx_mvvm_architecture/core/utils/extensions.dart';
-import 'package:getx_mvvm_architecture/core/shared/app_font.dart';
+import 'package:getx_mvvm_architecture/core/shared/extensions.dart';
 
 class ChatView extends StatelessWidget {
   const ChatView({super.key});
@@ -16,10 +15,11 @@ class ChatView extends StatelessWidget {
           SizedBox(height: 16),
           Text(
             "Chat Support",
-            style: AppFont.bold(
-              fontSizeValue: 18,
-              color: context.colors.onSurface,
-            ),
+            style: ThemeContext(context).textTheme.titleLarge?.copyWith(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: ThemeContext(context).colors.onSurface,
+                ),
           ),
         ],
       ),

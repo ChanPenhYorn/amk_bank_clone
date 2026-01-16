@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:getx_mvvm_architecture/core/utils/extensions.dart';
-import 'package:getx_mvvm_architecture/core/shared/app_font.dart';
+import 'package:getx_mvvm_architecture/core/shared/extensions.dart';
 
 class CardsView extends StatelessWidget {
   const CardsView({super.key});
@@ -16,10 +15,11 @@ class CardsView extends StatelessWidget {
           SizedBox(height: 16),
           Text(
             "My Cards",
-            style: AppFont.bold(
-              fontSizeValue: 18,
-              color: context.colors.onSurface,
-            ),
+            style: ThemeContext(context).textTheme.titleLarge?.copyWith(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: ThemeContext(context).colors.onSurface,
+                ),
           ),
         ],
       ),
