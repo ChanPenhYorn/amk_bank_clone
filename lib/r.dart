@@ -8,6 +8,9 @@ class AssetLocales {
 class AssetImages {
   static const String splash = 'assets/images/amk_splash.jpg';
   static const String amkNoBg = 'assets/images/amk_no_bg.png';
+  static const String kmFlag = 'assets/images/cambodia.png';
+  static const String enFlag = 'assets/images/united-kingdom.png';
+  static const String cnFlag = 'assets/images/china.png';
 }
 
 class AssetSvg {

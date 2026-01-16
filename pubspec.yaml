@@ -11,6 +11,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
 
   cupertino_icons: ^1.0.8
   get: ^4.6.6
@@ -39,6 +41,19 @@ flutter:
     - assets/locales/
     - assets/svg/
     - assets/images/
+
+  fonts:
+    - family: KantumruyPro
+      fonts:
+        - asset: assets/fonts/KantumruyPro-Regular.ttf
+        - asset: assets/fonts/KantumruyPro-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/KantumruyPro-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/KantumruyPro-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/KantumruyPro-Italic.ttf
+          style: italic
 
 flavorizr:
   ide: "vscode"

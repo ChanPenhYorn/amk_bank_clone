@@ -1,14 +1,16 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+
 import 'package:getx_mvvm_architecture/controllers/theme_controller.dart';
 import 'package:getx_mvvm_architecture/core/utils/app_logger.dart';
-import 'package:getx_mvvm_architecture/core/utils/app_translation.dart';
-import 'package:package_info_plus/package_info_plus.dart';
+import 'package:getx_mvvm_architecture/core/shared/app_translation.dart';
 
+import 'package:package_info_plus/package_info_plus.dart';
 import 'app.dart';
 import 'flavors.dart';
 
@@ -33,7 +35,7 @@ void main() async {
 
   logAppInfo(firebaseApp);
   AppTranslation translations = AppTranslation();
-  translations.loadTranslations();
+  await translations.loadTranslations();
 
   Get.put(ThemeController());
   runApp(App(translations: translations));

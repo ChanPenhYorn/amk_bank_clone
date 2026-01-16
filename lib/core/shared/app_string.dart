@@ -1,0 +1,31 @@
+class AppString {
+  static String get appName => "AMK";
+  static String get login => "login";
+  static String get signIn => "sign_in";
+  static String get signUp => "sign_up";
+  static String get noAccountMsg => "no_account_msg";
+  static String get selfAccountOpening => "self_account_opening";
+  static String get chat => "chat";
+  static String get contactUs => "contact_us";
+  static String get aboutAmk => "about_amk";
+  static String get back => "back";
+  static String get goodMorning => "good_morning";
+  static String get accounts => "accounts";
+  static String get payments => "payments";
+  static String get localTransfer => "local_transfer";
+  static String get history => "history";
+  static String get phoneTopUp => "phone_top_up";
+  static String get overseasTransfer => "overseas_transfer";
+  static String get fastTransfer => "fast_transfer";
+  static String get fastPayment => "fast_payment";
+  static String get exploreFeatures => "explore_features";
+  static String get seeAll => "see_all";
+  static String get myPoints => "my_points";
+  static String get loanRequest => "loan_request";
+  static String get creditBureauCambodia => "credit_bureau_cambodia";
+  static String get goalSavings => "goal_savings";
+  static String get promotions => "promotions";
+  static String get home => "home";
+  static String get cards => "cards";
+  static String get others => "others";
+}

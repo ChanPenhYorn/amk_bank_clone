@@ -11,11 +11,18 @@ class AppTranslation extends Translations {
   Future<void> loadTranslations() async {
     _translations['en'] = await loadJson('en');
     _translations['km'] = await loadJson('km');
+    _translations['zh'] = await loadJson(
+        'zh'); // Using 'zh' for GetX locale key, matching 'ch.json' file
   }
 
   Future<Map<String, String>> loadJson(String lang) async {
-    String jsonData = await rootBundle.loadString('assets/locales/$lang.json');
-    Map<String, dynamic> data = json.decode(jsonData);
-    return data.map((key, value) => MapEntry(key, value.toString()));
+    try {
+      String jsonData =
+          await rootBundle.loadString('assets/locales/$lang.json');
+      Map<String, dynamic> data = json.decode(jsonData);
+      return data.map((key, value) => MapEntry(key, value.toString()));
+    } catch (e) {
+      return {};
+    }
   }
 }

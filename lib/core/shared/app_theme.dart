@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:getx_mvvm_architecture/core/utils/app_font.dart';
-import 'app_colors.dart'; // Import your AppColors class
+import 'package:getx_mvvm_architecture/core/shared/app_font.dart';
+import '../utils/app_colors.dart'; // Import your AppColors class
 
 class AppThemes {
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
     colorScheme: _lightColorScheme,
+    fontFamily: AppFont.fontFamily,
     scaffoldBackgroundColor: AppColors.backgroundLight,
     textTheme: _getTextTheme(false),
     appBarTheme: AppBarTheme(
@@ -20,6 +21,7 @@ class AppThemes {
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     colorScheme: _darkColorScheme,
+    fontFamily: AppFont.fontFamily,
     scaffoldBackgroundColor: AppColors.backgroundDark,
     textTheme: _getTextTheme(true),
     appBarTheme: AppBarTheme(
@@ -59,24 +61,21 @@ class AppThemes {
     double fontSize = 16;
     final color = isDark ? AppColors.onSurfaceDark : AppColors.onSurfaceLight;
     return TextTheme(
-      displayLarge: AppFont.regular(fontSizeValue: fontSize + 41, color: color),
-      displayMedium:
-          AppFont.regular(fontSizeValue: fontSize + 29, color: color),
-      displaySmall: AppFont.regular(fontSizeValue: fontSize + 20, color: color),
-      headlineLarge:
-          AppFont.regular(fontSizeValue: fontSize + 16, color: color),
-      headlineMedium:
-          AppFont.regular(fontSizeValue: fontSize + 12, color: color),
-      headlineSmall: AppFont.regular(fontSizeValue: fontSize + 8, color: color),
-      titleLarge: AppFont.regular(fontSizeValue: fontSize + 6, color: color),
-      titleMedium: AppFont.regular(fontSizeValue: fontSize, color: color),
-      titleSmall: AppFont.regular(fontSizeValue: fontSize - 2, color: color),
+      displayLarge: AppFont.bold(fontSizeValue: fontSize + 41, color: color),
+      displayMedium: AppFont.bold(fontSizeValue: fontSize + 29, color: color),
+      displaySmall: AppFont.bold(fontSizeValue: fontSize + 20, color: color),
+      headlineLarge: AppFont.bold(fontSizeValue: fontSize + 16, color: color),
+      headlineMedium: AppFont.bold(fontSizeValue: fontSize + 12, color: color),
+      headlineSmall: AppFont.bold(fontSizeValue: fontSize + 8, color: color),
+      titleLarge: AppFont.semiBold(fontSizeValue: fontSize + 6, color: color),
+      titleMedium: AppFont.semiBold(fontSizeValue: fontSize, color: color),
+      titleSmall: AppFont.semiBold(fontSizeValue: fontSize - 2, color: color),
       bodyLarge: AppFont.regular(fontSizeValue: fontSize, color: color),
       bodyMedium: AppFont.regular(fontSizeValue: fontSize - 2, color: color),
       bodySmall: AppFont.regular(fontSizeValue: fontSize - 4, color: color),
-      labelLarge: AppFont.regular(fontSizeValue: fontSize - 2, color: color),
-      labelMedium: AppFont.regular(fontSizeValue: fontSize - 4, color: color),
-      labelSmall: AppFont.regular(fontSizeValue: fontSize - 5, color: color),
+      labelLarge: AppFont.medium(fontSizeValue: fontSize - 2, color: color),
+      labelMedium: AppFont.medium(fontSizeValue: fontSize - 4, color: color),
+      labelSmall: AppFont.medium(fontSizeValue: fontSize - 5, color: color),
     );
   }
 }

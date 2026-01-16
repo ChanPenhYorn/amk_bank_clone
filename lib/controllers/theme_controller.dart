@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_mvvm_architecture/core/utils/app_logger.dart';
-import 'package:getx_mvvm_architecture/core/utils/app_theme.dart';
+import 'package:getx_mvvm_architecture/core/shared/app_theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeController extends GetxController {
@@ -28,7 +27,7 @@ class ThemeController extends GetxController {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setInt('currentThemeIndex', currentThemeIndex.value);
 
-    AppLogger.logInfo('Theme changed to ${currentThemeIndex.value}');
+    // AppLogger.logInfo('Theme changed to ${currentThemeIndex.value}');
   }
 
   ThemeData get currentTheme => themes[currentThemeIndex.value];

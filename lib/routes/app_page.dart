@@ -5,6 +5,8 @@ import 'package:getx_mvvm_architecture/bindings/splash_binding.dart';
 import 'package:getx_mvvm_architecture/routes/app_route.dart';
 import 'package:getx_mvvm_architecture/views/auth/login_screen.dart';
 import 'package:getx_mvvm_architecture/views/home/home_screen.dart';
+import 'package:getx_mvvm_architecture/views/home/dashboard_screen.dart';
+import 'package:getx_mvvm_architecture/bindings/dashboard_binding.dart';
 import 'package:getx_mvvm_architecture/views/location/location_screen.dart';
 import 'package:getx_mvvm_architecture/views/splash/splash_screen.dart';
 
@@ -13,6 +15,11 @@ class AppPages {
     GetPage(
       name: AppRoutes.home,
       page: () => HomeScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.dashboard,
+      page: () => DashboardScreen(),
+      binding: DashboardBinding(),
     ),
     GetPage(
         name: AppRoutes.splash,

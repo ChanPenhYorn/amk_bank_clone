@@ -1,7 +1,7 @@
 // lib/views/location/location_screen.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_mvvm_architecture/core/utils/app_font.dart';
+import 'package:getx_mvvm_architecture/core/shared/app_font.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:getx_mvvm_architecture/core/utils/app_colors.dart';
 import 'package:getx_mvvm_architecture/controllers/location_controller.dart';
