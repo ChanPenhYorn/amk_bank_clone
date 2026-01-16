@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import 'package:getx_mvvm_architecture/controllers/theme_controller.dart';
+import 'package:getx_mvvm_architecture/presentation/controllers/theme_controller.dart';
 import 'package:getx_mvvm_architecture/core/utils/app_logger.dart';
 import 'package:getx_mvvm_architecture/core/shared/app_translation.dart';
 

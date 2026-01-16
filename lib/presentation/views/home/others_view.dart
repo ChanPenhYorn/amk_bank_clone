@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:getx_mvvm_architecture/controllers/localization_controller.dart';
-import 'package:getx_mvvm_architecture/controllers/theme_controller.dart';
+import 'package:getx_mvvm_architecture/presentation/controllers/localization_controller.dart';
+import 'package:getx_mvvm_architecture/presentation/controllers/other_controller.dart';
+import 'package:getx_mvvm_architecture/presentation/controllers/theme_controller.dart';
 import 'package:getx_mvvm_architecture/core/shared/extensions.dart';
 import 'package:getx_mvvm_architecture/core/utils/app_colors.dart';
+import 'package:getx_mvvm_architecture/core/shared/app_string.dart';
+import 'package:getx_mvvm_architecture/data/models/name_model.dart';
+import 'package:getx_mvvm_architecture/presentation/widgets/app_button_widget.dart';
+import 'package:getx_mvvm_architecture/presentation/widgets/app_dropdown_button.dart';
+import 'package:getx_mvvm_architecture/presentation/widgets/app_textformfield_widget.dart';
 
 class OthersView extends StatelessWidget {
   const OthersView({super.key});
@@ -14,9 +20,16 @@ class OthersView extends StatelessWidget {
     final ThemeController themeController = Get.find();
     final LocalizationController localizationController = Get.find();
 
+    final TextEditingController passwordController = TextEditingController();
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController phoneNumberController = TextEditingController();
+    final TextEditingController userNameController = TextEditingController();
+
+    final OtherController otherController = Get.find();
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Banking App Theme & Settings"),
+        title: Text(AppString.bankingAppThemeSettings.tr),
         centerTitle: true,
         actions: [
           IconButton(
@@ -33,17 +46,18 @@ class OthersView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildSectionHeader("Language / ភាសា / 语言"),
+            _buildSectionHeader(AppString.language.tr),
             const Gap(12),
             _buildLanguageSelector(context, localizationController),
             const Gap(24),
             Obx(() => _buildSectionHeader(
-                "Font Scale: ${themeController.fontScale.value.toStringAsFixed(1)}x")),
+                "${AppString.fontScale.tr}: ${themeController.fontScale.value.toStringAsFixed(1)}x")),
             const Gap(12),
             _buildFontScaleSelector(context, themeController),
+
             const Gap(8),
             Text(
-              "Font: Inter (All text uses Inter font with custom scaling)",
+              AppString.fontInterDescription.tr,
               style: ThemeContext(context)
                   .textTheme
                   .bodySmall
@@ -52,20 +66,107 @@ class OthersView extends StatelessWidget {
             const Gap(24),
             _buildWelcomeCard(),
             const Gap(24),
-            _buildSectionHeader("Color Palette"),
+            _buildSectionHeader(AppString.colorPalette.tr),
             const Gap(12),
             _buildColorPalette(),
             const Gap(24),
             _buildTypographyPreview(context),
             const Gap(24),
-            _buildSectionHeader("Custom Buttons"),
+            _buildSectionHeader(AppString.customButtons.tr),
             const Gap(12),
             _buildButtonsSection(context),
             const Gap(24),
-            _buildSectionHeader("Custom Input Fields"),
+            _buildSectionHeader(AppString.customInputFields.tr),
             const Gap(12),
-            _buildInputFieldsSection(context),
+            // Custom Input Fields Card
+            _buildCustomField(context, passwordController, emailController,
+                phoneNumberController, userNameController),
+
             const Gap(24),
+
+            const Gap(24),
+            _buildSectionHeader(AppString.customDropdownButton.tr),
+            const Gap(12),
+
+            // customd dropdown button
+            Obx(() => Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: context.colors.surface,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: Colors.grey.withOpacity(0.2)),
+                  ),
+                  child: AppDropdownButtonWidget(
+                    backgroundColor: context.colors.surface,
+                    items: otherController.countryItems.value,
+                    onChanged: (value) {
+                      if (value != null) {
+                        otherController.onCountryChanged(value);
+                      }
+                    },
+                    selectedValue: otherController.selectedCountry.value,
+                  ),
+                )),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Card _buildCustomField(
+      BuildContext context,
+      TextEditingController passwordController,
+      TextEditingController emailController,
+      TextEditingController phoneNumberController,
+      TextEditingController userNameController) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Custom Input Fields',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            const SizedBox(height: 16),
+            AppTextformfieldWidget(
+              label: 'លេខសម្ងាត់ ឬ ខ្មែរ',
+              hintText: '******',
+              prefixIcon: Icon(Icons.lock,
+                  color: Theme.of(context).colorScheme.onSurface),
+              obscureText: true,
+              controller: passwordController,
+            ),
+            const SizedBox(height: 16),
+            AppTextformfieldWidget(
+              label: 'Email',
+              hintText: 'Enter your email',
+              prefixIcon: Icon(Icons.email,
+                  color: Theme.of(context).colorScheme.onSurface),
+              keyboardType: TextInputType.emailAddress,
+              controller: emailController,
+            ),
+            const SizedBox(height: 16),
+            AppTextformfieldWidget(
+              label: 'Phone Number',
+              hintText: 'Enter phone number',
+              prefixIcon: Icon(Icons.phone,
+                  color: Theme.of(context).colorScheme.onSurface),
+              keyboardType: TextInputType.phone,
+              controller: phoneNumberController,
+            ),
+            const Gap(16),
+            AppTextformfieldWidget(
+              label: 'With suffix icon',
+              hintText: 'With suffix icon',
+              prefixIcon: Icon(Icons.account_circle,
+                  color: Theme.of(context).colorScheme.onSurface),
+              suffixIcon: Icon(Icons.close,
+                  color: Theme.of(context).colorScheme.onSurface),
+              keyboardType: TextInputType.phone,
+              controller: userNameController,
+            ),
           ],
         ),
       ),
@@ -118,7 +219,7 @@ class OthersView extends StatelessWidget {
           ),
           const Gap(8),
           Text(
-            "Current: ${currentLocale.languageCode}_${currentLocale.countryCode ?? ''}",
+            "${AppString.current.tr}: ${currentLocale.languageCode}_${currentLocale.countryCode ?? ''}",
             style: ThemeContext(context)
                 .textTheme
                 .bodySmall
@@ -201,7 +302,7 @@ class OthersView extends StatelessWidget {
                   value: controller.fontScale.value,
                   min: 1,
                   max: 1.5,
-                  divisions: 10,
+                  divisions: 5,
                   activeColor: AppColors.amkPrimary,
                   onChanged: (value) => controller.updateFontScale(value),
                   onChangeEnd: (value) => controller.saveFontScaleToPrefs(),
@@ -237,21 +338,21 @@ class OthersView extends StatelessWidget {
           end: Alignment.bottomRight,
         ),
       ),
-      child: const Column(
+      child: Column(
         children: [
           Text(
-            "Welcome to Banking App",
-            style: TextStyle(
+            AppString.welcomeBankingApp.tr,
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 24,
               fontWeight: FontWeight.bold,
             ),
             textAlign: TextAlign.center,
           ),
-          Gap(8),
+          const Gap(8),
           Text(
-            "Custom Gradient Background",
-            style: TextStyle(
+            AppString.customGradientBackground.tr,
+            style: const TextStyle(
               color: Colors.white70,
               fontSize: 14,
             ),
@@ -264,9 +365,10 @@ class OthersView extends StatelessWidget {
   Widget _buildColorPalette() {
     return Column(
       children: [
-        _buildColorItem("Primary", AppColors.amkPrimary),
-        _buildColorItem("Primary Light", AppColors.amkPrimary.withOpacity(0.6)),
-        _buildColorItem("Primary Dark", AppColors.amkGradientEnd),
+        _buildColorItem(AppString.primary.tr, AppColors.amkPrimary),
+        _buildColorItem(
+            AppString.primaryLight.tr, AppColors.amkPrimary.withOpacity(0.6)),
+        _buildColorItem(AppString.primaryDark.tr, AppColors.amkGradientEnd),
       ],
     );
   }
@@ -305,14 +407,18 @@ class OthersView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Display Large",
-              style: ThemeContext(context).textTheme.displayLarge),
-          Text("Headline Medium",
-              style: ThemeContext(context).textTheme.headlineMedium),
-          Text("Title Large",
+          Text(AppString.typographyPreview.tr,
               style: ThemeContext(context).textTheme.titleLarge),
-          Text("Body Large", style: ThemeContext(context).textTheme.bodyLarge),
-          Text("Body Medium",
+          const Gap(8),
+          Text(AppString.displayLarge.tr,
+              style: ThemeContext(context).textTheme.displayLarge),
+          Text(AppString.headlineMedium.tr,
+              style: ThemeContext(context).textTheme.headlineMedium),
+          Text(AppString.titleLarge.tr,
+              style: ThemeContext(context).textTheme.titleLarge),
+          Text(AppString.bodyLarge.tr,
+              style: ThemeContext(context).textTheme.bodyLarge),
+          Text(AppString.bodyMedium.tr,
               style: ThemeContext(context).textTheme.bodyMedium),
         ],
       ),
@@ -327,144 +433,53 @@ class OthersView extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: Colors.grey.withOpacity(0.2)),
       ),
-      child: Column(
-        children: [
-          _buildButton(
-            "Primary Button",
-            backgroundColor: AppColors.amkPrimary,
-            textColor: Colors.white,
-          ),
-          const Gap(12),
-          _buildButton(
-            "Primary Disabled",
-            backgroundColor: Colors.grey.shade400,
-            textColor: Colors.white70,
-          ),
-          const Gap(12),
-          _buildButton(
-            "With Icon",
-            backgroundColor: AppColors.amkPrimary,
-            textColor: Colors.white,
-            icon: Icons.login,
-          ),
-          const Gap(12),
-          _buildButton(
-            "Outline Button",
-            backgroundColor: Colors.white,
-            textColor: AppColors.amkPrimary,
-            borderColor: AppColors.amkPrimary,
-          ),
-          const Gap(12),
-          _buildButton(
-            "Outline Disabled",
-            backgroundColor: Colors.white,
-            textColor: Colors.grey.shade400,
-            borderColor: Colors.grey.shade300,
-          ),
-          const Gap(12),
-          _buildButton(
-            "With Icon",
-            backgroundColor: Colors.white,
-            textColor: AppColors.amkPrimary,
-            borderColor: AppColors.amkPrimary,
-            icon: Icons.send,
-            iconTrailing: true,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildButton(String text,
-      {required Color backgroundColor,
-      required Color textColor,
-      Color? borderColor,
-      IconData? icon,
-      bool iconTrailing = false}) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: BorderRadius.circular(8),
-        border: borderColor != null ? Border.all(color: borderColor) : null,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          if (icon != null && !iconTrailing) ...[
-            Icon(icon, color: textColor, size: 20),
-            const Gap(8),
-          ],
-          Text(
-            text,
-            style: TextStyle(
-              color: textColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
+      child: Card(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              'Custom Buttons',
+              style: Theme.of(context).textTheme.titleLarge,
             ),
-          ),
-          if (icon != null && iconTrailing) ...[
-            const Spacer(),
-            Icon(icon, color: textColor, size: 20),
+            const SizedBox(height: 16),
+            AppPrimaryButton(
+              text: 'Primary Button',
+              onPressed: () {},
+            ),
+            const SizedBox(height: 8),
+            AppPrimaryButton(
+              text: 'Primary Disabled',
+              onPressed: null,
+            ),
+            const SizedBox(height: 8),
+            AppPrimaryButton(
+              text: 'With Icon',
+              icon: Icons.login,
+              onPressed: () {},
+            ),
+            const SizedBox(height: 8),
+            AppPrimaryButton(
+              text: 'Loading',
+              isLoading: true,
+              onPressed: () {},
+            ),
+            const SizedBox(height: 16),
+            AppOutlineButton(
+              text: 'Outline Button',
+              onPressed: () {},
+            ),
+            const SizedBox(height: 8),
+            AppOutlineButton(
+              text: 'Outline Disabled',
+              onPressed: null,
+            ),
+            const SizedBox(height: 8),
+            AppOutlineButton(
+              text: 'With Icon',
+              icon: Icons.send,
+              onPressed: () {},
+            ),
           ],
-        ],
-      ),
-    );
-  }
-
-  Widget _buildInputFieldsSection(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: context.colors.surface,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.grey.withOpacity(0.2)),
-      ),
-      child: Column(
-        children: [
-          _buildTextField(
-            hintText: "លេខសម្ងាត់ ឬ ខ្មែរ",
-            prefixIcon: Icons.search,
-            suffixIcon: Icons.visibility_off,
-          ),
-          const Gap(12),
-          _buildTextField(
-            hintText: "Email",
-            prefixIcon: Icons.email,
-          ),
-          const Gap(12),
-          _buildTextField(
-            hintText: "Phone Number",
-            prefixIcon: Icons.phone,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildTextField(
-      {required String hintText, IconData? prefixIcon, IconData? suffixIcon}) {
-    return TextField(
-      decoration: InputDecoration(
-        hintText: hintText,
-        prefixIcon:
-            prefixIcon != null ? Icon(prefixIcon, color: Colors.grey) : null,
-        suffixIcon:
-            suffixIcon != null ? Icon(suffixIcon, color: Colors.grey) : null,
-        contentPadding:
-            const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: Colors.grey.shade300),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: Colors.grey.shade300),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: AppColors.amkPrimary),
         ),
       ),
     );

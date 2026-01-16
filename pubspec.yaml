@@ -27,6 +27,7 @@ dependencies:
   gap: ^3.0.1
   logger: ^2.6.2
   google_maps_flutter: ^2.10.0
+  dropdown_button2: ^2.3.9
 
 dev_dependencies:
   flutter_test:

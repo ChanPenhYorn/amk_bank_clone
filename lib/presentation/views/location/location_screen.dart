@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:getx_mvvm_architecture/core/shared/extensions.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:getx_mvvm_architecture/core/utils/app_colors.dart';
-import 'package:getx_mvvm_architecture/controllers/location_controller.dart';
+import 'package:getx_mvvm_architecture/presentation/controllers/location_controller.dart';
 
 class LocationScreen extends StatelessWidget {
   const LocationScreen({super.key});

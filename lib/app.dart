@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
-import 'package:getx_mvvm_architecture/controllers/theme_controller.dart';
-import 'package:getx_mvvm_architecture/controllers/localization_controller.dart';
+import 'package:getx_mvvm_architecture/presentation/controllers/theme_controller.dart';
+import 'package:getx_mvvm_architecture/presentation/controllers/localization_controller.dart';
 import 'package:getx_mvvm_architecture/core/shared/app_translation.dart';
 import 'package:getx_mvvm_architecture/routes/app_page.dart';
 import 'package:getx_mvvm_architecture/routes/app_route.dart';

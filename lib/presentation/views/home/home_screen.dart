@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_mvvm_architecture/controllers/theme_controller.dart';
+import 'package:getx_mvvm_architecture/presentation/controllers/theme_controller.dart';
 import 'package:getx_mvvm_architecture/core/shared/extensions.dart';
 import 'package:gap/gap.dart';
 

@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_mvvm_architecture/core/shared/app_string.dart';
 import 'package:getx_mvvm_architecture/core/utils/app_colors.dart';
-import 'package:getx_mvvm_architecture/controllers/localization_controller.dart';
+import 'package:getx_mvvm_architecture/presentation/controllers/localization_controller.dart';
 import 'package:getx_mvvm_architecture/r.dart';
 import 'package:getx_mvvm_architecture/routes/app_route.dart';
-import 'package:getx_mvvm_architecture/views/auth/register_screen.dart';
+import 'package:getx_mvvm_architecture/presentation/views/auth/register_screen.dart';
 import 'package:getx_mvvm_architecture/core/shared/extensions.dart';
+import 'package:getx_mvvm_architecture/presentation/widgets/app_button_widget.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -25,7 +26,7 @@ class LoginScreen extends StatelessWidget {
     );
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: context.colors.surface,
       body: Stack(
         children: [
           // 1. Background Image
@@ -39,7 +40,7 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
 
-          // 1.5. White-to-pink gradient overlay at top and fade to white bottom
+          // 1.5. White-to-pink gradient overlay at top and fade to surface bottom
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
@@ -49,10 +50,10 @@ class LoginScreen extends StatelessWidget {
                   colors: [
                     AppColors.amkPrimary.withValues(alpha: 0.6),
                     Colors.transparent,
-                    Colors.white.withValues(alpha: 0.8),
-                    Colors.white,
+                    context.colors.surface.withValues(alpha: 0.8),
+                    context.colors.surface,
                   ],
-                  stops: [0.0, 0.3, 0.5, 0.6],
+                  stops: const [0.0, 0.3, 0.5, 0.6],
                 ),
               ),
             ),
@@ -82,10 +83,11 @@ class LoginScreen extends StatelessWidget {
                             .currentLocale.value.languageCode;
 
                         return Container(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 4, vertical: 4),
                           decoration: BoxDecoration(
-                            color: Colors.white.withValues(alpha: 0.9),
+                            color:
+                                context.colors.surface.withValues(alpha: 0.9),
                             borderRadius: BorderRadius.circular(25),
                           ),
                           child: Row(
@@ -119,123 +121,88 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
 
-                Spacer(), // Push content down
+                const Spacer(), // Push content down
 
                 // Login Card / Action Area
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-                  margin: EdgeInsets.symmetric(horizontal: 16),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+                  margin: const EdgeInsets.symmetric(horizontal: 16),
                   decoration: BoxDecoration(
-                    color: isDarkMode ? Color(0xFF2C2C2C) : Colors.white,
+                    color: context.colors.surface,
                     borderRadius: BorderRadius.circular(15),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.05),
+                        color: Colors.black
+                            .withValues(alpha: isDarkMode ? 0.3 : 0.05),
                         blurRadius: 15,
-                        offset: Offset(0, 5),
+                        offset: const Offset(0, 5),
                       )
                     ],
                   ),
                   child: Column(
                     children: [
                       // Login Button (Sign In)
-                      SizedBox(
+                      AppPrimaryButton(
+                        text: AppString.signIn.tr,
+                        onPressed: () {
+                          Get.offAllNamed(AppRoutes.dashboard);
+                        },
                         width: double.infinity,
-                        height: 52,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.amkPrimary,
-                            foregroundColor: Colors.white,
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          onPressed: () {
-                            Get.offAllNamed(AppRoutes.dashboard);
-                          },
-                          child: Text(
-                            AppString.signIn.tr,
-                            style: ThemeContext(context)
-                                .textTheme
-                                .titleLarge
-                                ?.copyWith(
-                                  fontSize: 18,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                          ),
-                        ),
                       ),
 
-                      SizedBox(height: 12),
+                      const SizedBox(height: 12),
 
                       // Sign Up Button
-                      SizedBox(
+                      AppOutlineButton(
+                        text: AppString.signUp.tr,
+                        onPressed: () {},
                         width: double.infinity,
-                        height: 52,
-                        child: OutlinedButton(
-                          style: OutlinedButton.styleFrom(
-                            side: BorderSide(
-                                color: AppColors.amkPrimary
-                                    .withValues(alpha: 0.5)),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          onPressed: () {},
-                          child: Text(
-                            AppString.signUp.tr,
-                            style: ThemeContext(context)
-                                .textTheme
-                                .titleLarge
-                                ?.copyWith(
-                                  fontSize: 18,
-                                  color: AppColors.amkPrimary,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                          ),
-                        ),
                       ),
 
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
 
                       // Divider
                       Row(
                         children: [
-                          Expanded(child: Divider(color: Colors.grey.shade300)),
+                          Expanded(
+                              child: Divider(
+                                  color: context.colors.outlineVariant)),
                           Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 12.0),
                             child: Text(AppString.noAccountMsg.tr,
-                                style: ThemeContext(context)
+                                style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium
                                     ?.copyWith(
                                         fontSize: 13,
-                                        color: Colors.grey.shade600)),
+                                        color:
+                                            context.colors.onSurfaceVariant)),
                           ),
-                          Expanded(child: Divider(color: Colors.grey.shade300)),
+                          Expanded(
+                              child: Divider(
+                                  color: context.colors.outlineVariant)),
                         ],
                       ),
 
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
 
                       // Self Account Opening Button
                       GestureDetector(
                         onTap: () {
-                          Get.to(() => RegisterScreen());
+                          Get.to(() => const RegisterScreen());
                         },
                         child: Container(
                           width: double.infinity,
-                          padding: EdgeInsets.symmetric(vertical: 16),
+                          padding: const EdgeInsets.symmetric(vertical: 16),
                           decoration: BoxDecoration(
-                            color: Colors.grey.shade100,
+                            color: context.colors.surfaceVariant,
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Center(
                             child: Text(AppString.selfAccountOpening.tr,
-                                style: ThemeContext(context)
+                                style: Theme.of(context)
                                     .textTheme
                                     .titleMedium
                                     ?.copyWith(
@@ -249,9 +216,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
 
-                SizedBox(height: 20),
-
-                // Spacer(),
+                const SizedBox(height: 20),
 
                 // Footer
                 Padding(
@@ -263,19 +228,16 @@ class LoginScreen extends StatelessWidget {
                         context,
                         Icons.chat_bubble_outline,
                         AppString.chat.tr,
-                        Colors.black,
                       ),
                       _buildFooterItem(
                         context,
                         Icons.call_outlined,
                         AppString.contactUs.tr,
-                        Colors.black,
                       ),
                       _buildFooterItem(
                         context,
                         Icons.info_outline,
                         AppString.aboutAmk.tr,
-                        Colors.black,
                       ),
                     ],
                   ),
@@ -294,45 +256,35 @@ class LoginScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         decoration: BoxDecoration(
-          color: isActive ? Colors.white : Colors.transparent,
+          color: isActive ? context.colors.surface : Colors.transparent,
           borderRadius: BorderRadius.circular(20),
           boxShadow: isActive
               ? [
                   BoxShadow(
                       color: Colors.black.withValues(alpha: 0.1),
                       blurRadius: 5,
-                      offset: Offset(0, 2))
+                      offset: const Offset(0, 2))
                 ]
               : null,
         ),
         child: Row(
           children: [
             Image.asset(flagPath, height: 20, width: 20),
-            // if (isActive) ...[
-            //   SizedBox(width: 4),
-            //   Text(label,
-            //       style: TextStyle(
-            //           color: Colors.black87,
-            //           fontSize: 12,
-            //           fontWeight: FontWeight.w500)),
-            // ]
-
-            SizedBox(width: 4),
+            const SizedBox(width: 4),
             Text(label,
-                style: ThemeContext(context)
+                style: Theme.of(context)
                     .textTheme
                     .labelMedium
-                    ?.copyWith(color: Colors.black87, fontSize: 12)),
+                    ?.copyWith(color: context.colors.onSurface, fontSize: 12)),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildFooterItem(
-      BuildContext context, IconData icon, String label, Color color,
+  Widget _buildFooterItem(BuildContext context, IconData icon, String label,
       {VoidCallback? onTap}) {
     return GestureDetector(
       onTap: onTap,
@@ -341,25 +293,25 @@ class LoginScreen extends StatelessWidget {
         height: 90,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          color: Colors.white,
+          color: context.colors.surface,
           boxShadow: [
             BoxShadow(
                 color: Colors.black.withValues(alpha: 0.05),
                 blurRadius: 10,
-                offset: Offset(0, 4))
+                offset: const Offset(0, 4))
           ],
         ),
-        padding: EdgeInsets.symmetric(vertical: 12),
+        padding: const EdgeInsets.symmetric(vertical: 12),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(icon, color: AppColors.amkPrimary, size: 28),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(label,
-                style: ThemeContext(context)
+                style: Theme.of(context)
                     .textTheme
                     .labelMedium
-                    ?.copyWith(color: Colors.black87, fontSize: 13)),
+                    ?.copyWith(color: context.colors.onSurface, fontSize: 13)),
           ],
         ),
       ),

@@ -1,17 +1,17 @@
 // lib/views/home/dashboard_screen.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_mvvm_architecture/controllers/theme_controller.dart';
-import 'package:getx_mvvm_architecture/controllers/localization_controller.dart';
-import 'package:getx_mvvm_architecture/controllers/dashboard_controller.dart';
+import 'package:getx_mvvm_architecture/presentation/controllers/theme_controller.dart';
+import 'package:getx_mvvm_architecture/presentation/controllers/localization_controller.dart';
+import 'package:getx_mvvm_architecture/presentation/controllers/dashboard_controller.dart';
 import 'package:getx_mvvm_architecture/core/shared/app_string.dart';
 import 'package:getx_mvvm_architecture/core/shared/extensions.dart';
 import 'package:getx_mvvm_architecture/r.dart';
-import 'package:getx_mvvm_architecture/views/home/home_view.dart';
-import 'package:getx_mvvm_architecture/views/home/cards_view.dart';
-import 'package:getx_mvvm_architecture/views/home/scan_view.dart';
-import 'package:getx_mvvm_architecture/views/home/chat_view.dart';
-import 'package:getx_mvvm_architecture/views/home/others_view.dart';
+import 'package:getx_mvvm_architecture/presentation/views/home/home_view.dart';
+import 'package:getx_mvvm_architecture/presentation/views/home/cards_view.dart';
+import 'package:getx_mvvm_architecture/presentation/views/home/scan_view.dart';
+import 'package:getx_mvvm_architecture/presentation/views/home/chat_view.dart';
+import 'package:getx_mvvm_architecture/presentation/views/home/others_view.dart';
 
 class DashboardScreen extends GetView<DashboardController> {
   DashboardScreen({super.key});
